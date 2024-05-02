@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useId } from "react";
+
 
 
 function App() {
@@ -22,10 +22,14 @@ function App() {
     console.log(useId);
     document.getElementById(useId).remove()
   }
+  const completedTodo = (useId) => {
+    console.log(useId);
+    document.getElementById(useId).classList.toggle('line-through')
+  }
 
   return (
     <>
-      <form onSubmit={onSubmit} className="flex gap-2 bg-black" >
+      <form onSubmit={onSubmit}  >
         <input type="text" id="todoInput" placeholder="Add todo" />
         <button type="submit" >Add</button>
       </form>
@@ -34,13 +38,16 @@ function App() {
 
       </h2>
       <ul>
-        {(todo ? todo.map((todo, useId = useId()) => <li key={todo} id={useId} >{todo}    <img src="https://www.flaticon.com/svg/vstatic/svg/3917/3917772.svg?token=exp=1714642847~hmac=ebbe272dc43dee601215ac4f15523ccb" className="w-[20px] h-6" onClick={() => deleteTodo(useId)} /> </li>) : <h3>No Todo Yet</h3>)}
+        {(todo ? todo.map((todo, useId = useId()) =>
+          <div className="flex justify-between" key={useId} id={useId} >
+            <li >{todo}</li>
+            <div className="flex gap-1 ">
+              <img src="https://www.flaticon.com/svg/vstatic/svg/3917/3917772.svg?token=exp=1714642847~hmac=ebbe272dc43dee601215ac4f15523ccb" className="w-[20px] h-6 cursor-pointer " onClick={() => deleteTodo(useId)} />
+              <input type="checkbox" onChange={() => completedTodo(useId)} />
+            </div>
+          </div>) : <h3>No Todo Yet</h3>)}
 
       </ul>
-
-
-
-
     </>
   )
 }
