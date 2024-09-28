@@ -5,7 +5,7 @@
 
 //3. Longest Substring Without Repeating Characters
 
-var lengthOfLongestSubstring = function(s) {
+var lengthOfLongestSubstring = function (s) {
     let longest = 0;
     let current = 0;
     let map = {};
@@ -17,10 +17,10 @@ var lengthOfLongestSubstring = function(s) {
         longest = Math.max(longest, i - current + 1);
     }
     return longest;
-  
-    
+
+
 };
 
 
-const result = lengthOfLongestSubstring("bbb")
+const result = lengthOfLongestSubstring("s")
 console.log(result);
